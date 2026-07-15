@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#04070a" />
-  <meta name="description" content="AGENTROPOLIS-ATG is an open agent transaction grammar and MCP-native coordination kit for autonomous agents." />
+  <meta name="description" content="AGENTROPOLIS-ATG is an open semantic protocol for autonomous agents. ATRALITH is the reference MCP-native agent kit that implements it." />
   <title>AGENTROPOLIS-ATG | Agent Transaction Grammar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +22,7 @@
     </a>
     <nav>
       <a href="#protocol">Protocol</a>
+      <a href="#kit">Agent Kit</a>
       <a href="#alphabet">Alphabet</a>
       <a href="#console">Console</a>
       <a href="#economy">Economy</a>
@@ -39,7 +40,7 @@
           <a class="button primary" href="#alphabet">Enter Glyph Chamber</a>
           <button class="button secondary copy-button" data-copy="git clone https://github.com/wiredchaos/AGENTROPOLIS-ATG.git">Copy Clone Command</button>
         </div>
-        <div class="proof-strip"><span>MCP-native</span><span>Transport-independent</span><span>Open-core</span><span>Receipt-driven</span></div>
+        <div class="proof-strip"><span>Open protocol</span><span>Transport-independent</span><span>Implementation-neutral</span><span>Receipt-driven</span></div>
       </div>
 
       <div class="holo-stone reveal" aria-label="Holographic protocol stone">
@@ -65,6 +66,15 @@
       </div>
     </section>
 
+    <section id="kit" class="shell block">
+      <div class="section-head reveal"><span>PROTOCOL VS AGENT KIT</span><h2>ATG defines the rules. ATRALITH provides the machinery.</h2><p>The standard stays open and implementation-neutral. The Agent Kit makes it usable through MCP, SDKs, validators, adapters, and receipts.</p></div>
+      <div class="cards">
+        <article class="card reveal"><b>STANDARD</b><h3>ATG Protocol</h3><p>RFCs, schemas, message types, authority semantics, evidence rules, receipts, versioning, and interoperability tests.</p><code>how agents communicate</code></article>
+        <article class="card reveal"><b>LANGUAGE</b><h3>Atranic</h3><p>The structured semantic grammar carried inside ATG messages, with Atral Script as its visual glyph layer.</p><code>what agent messages mean</code></article>
+        <article class="card reveal"><b>REFERENCE KIT</b><h3>ATRALITH</h3><p>MCP server, TypeScript and Python SDKs, validator, mandate builder, receipt engine, CLI, and ecosystem adapters.</p><code>software that implements ATG</code></article>
+      </div>
+    </section>
+
     <section id="alphabet" class="alphabet-section shell block">
       <div class="section-head reveal"><span>ATRAL SCRIPT</span><h2>A holographic alphabet for machine identity and agent intent.</h2><p>Select any glyph to inspect its sound, protocol meaning, and semantic family.</p></div>
       <div class="alphabet-lab reveal">
@@ -80,7 +90,7 @@
     </section>
 
     <section id="console" class="shell block">
-      <div class="section-head reveal"><span>LIVE CONSOLE</span><h2>Translate intent into an agent-readable mandate.</h2><p>This prototype visualizes the future ATRALITH MCP workflow.</p></div>
+      <div class="section-head reveal"><span>LIVE CONSOLE</span><h2>Translate intent into an agent-readable mandate.</h2><p>This prototype visualizes how the future ATRALITH Agent Kit will compile and validate ATG messages.</p></div>
       <div class="console reveal">
         <div class="console-top"><span></span><span></span><span></span><strong>atralith://mandate-builder</strong></div>
         <div class="console-body">
@@ -102,12 +112,12 @@
     </section>
 
     <section class="shell install reveal">
-      <div><span>REFERENCE IMPLEMENTATION</span><h2>Built in public. Designed for agents.</h2><p>Protocol, schema, MCP server, validator, adapters, and examples will live here.</p></div>
+      <div><span>OPEN STANDARD</span><h2>Build against ATG. Implement it with ATRALITH.</h2><p>This repository houses the protocol and visual language. The reference Agent Kit will supply the MCP server, SDKs, validators, adapters, and execution tools.</p></div>
       <div class="install-command"><code>git clone https://github.com/wiredchaos/AGENTROPOLIS-ATG.git</code><button class="copy-button" data-copy="git clone https://github.com/wiredchaos/AGENTROPOLIS-ATG.git">COPY</button></div>
     </section>
   </main>
 
-  <footer class="shell"><span>AGENTROPOLIS-ATG · APACHE-2.0</span><span>ATRANIC/0.1 · WIRED CHAOS</span></footer>
+  <footer class="shell"><span>AGENTROPOLIS-ATG · APACHE-2.0</span><span>ATG = STANDARD · ATRALITH = AGENT KIT</span></footer>
   <script src="app.js"></script>
 </body>
 </html>
