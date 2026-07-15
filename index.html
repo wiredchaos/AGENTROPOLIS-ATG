@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#04070a" />
+  <meta name="description" content="AGENTROPOLIS-ATG is an open agent transaction grammar and MCP-native coordination kit for autonomous agents." />
+  <title>AGENTROPOLIS-ATG | Agent Transaction Grammar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="signal-field" aria-hidden="true"></canvas>
+  <div class="scanline" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="brand-mark">ATG</span>
+      <span><strong>AGENTROPOLIS</strong><small>Agent Transaction Grammar</small></span>
+    </a>
+    <nav>
+      <a href="#protocol">Protocol</a>
+      <a href="#alphabet">Alphabet</a>
+      <a href="#console">Console</a>
+      <a href="#economy">Economy</a>
+    </nav>
+    <a class="button ghost" href="https://github.com/wiredchaos/AGENTROPOLIS-ATG" target="_blank" rel="noreferrer">GitHub</a>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span></span> OPEN PROTOCOL · DRAFT v0.1</div>
+        <h1>The semantic contract layer for autonomous agents.</h1>
+        <p>ATG gives agents a shared grammar for identity, capabilities, mandates, authority, evidence, receipts, reputation, and economic exchange.</p>
+        <div class="actions">
+          <a class="button primary" href="#alphabet">Enter Glyph Chamber</a>
+          <button class="button secondary copy-button" data-copy="git clone https://github.com/wiredchaos/AGENTROPOLIS-ATG.git">Copy Clone Command</button>
+        </div>
+        <div class="proof-strip"><span>MCP-native</span><span>Transport-independent</span><span>Open-core</span><span>Receipt-driven</span></div>
+      </div>
+
+      <div class="holo-stone reveal" aria-label="Holographic protocol stone">
+        <div class="stone-ring ring-a"></div><div class="stone-ring ring-b"></div><div class="stone-ring ring-c"></div>
+        <div class="stone-core"><strong>𐌀</strong><span>ATRANIC</span><small>agent grammar online</small></div>
+        <div class="sigil s1">NAR</div><div class="sigil s2">MAND</div><div class="sigil s3">RECP</div><div class="sigil s4">AUTH</div>
+      </div>
+    </section>
+
+    <section class="metrics shell reveal">
+      <article><strong data-count="24">0</strong><span>Core glyphs</span></article>
+      <article><strong data-count="10">0</strong><span>Message types</span></article>
+      <article><strong data-count="5">0</strong><span>Authority modes</span></article>
+      <article><strong>∞</strong><span>Compatible agents</span></article>
+    </section>
+
+    <section id="protocol" class="shell block">
+      <div class="section-head reveal"><span>PROTOCOL STACK</span><h2>MCP gives access. ATG gives access meaning, limits, and proof.</h2><p>Atranic operates above transport and tool access as a shared semantic contract.</p></div>
+      <div class="cards">
+        <article class="card reveal"><b>01</b><h3>Declare</h3><p>Publish identity, runtime, capability, dependency, cost, and evidence requirements.</p><code>capability_declaration</code></article>
+        <article class="card reveal"><b>02</b><h3>Negotiate</h3><p>Set scope, authority, deadline, price, proof, and failure boundaries before execution.</p><code>mandate → offer → acceptance</code></article>
+        <article class="card reveal"><b>03</b><h3>Execute</h3><p>Route work through policy gates, specialist agents, validation, and receipt generation.</p><code>status → result → receipt</code></article>
+      </div>
+    </section>
+
+    <section id="alphabet" class="alphabet-section shell block">
+      <div class="section-head reveal"><span>ATRAL SCRIPT</span><h2>A holographic alphabet for machine identity and agent intent.</h2><p>Select any glyph to inspect its sound, protocol meaning, and semantic family.</p></div>
+      <div class="alphabet-lab reveal">
+        <div id="glyph-grid" class="glyph-grid" aria-label="Atranic alphabet"></div>
+        <aside class="glyph-inspector">
+          <div class="inspector-glow"></div>
+          <div id="active-glyph" class="active-glyph">𐌀</div>
+          <div class="glyph-meta"><span id="glyph-letter">A</span><strong id="glyph-name">AR</strong></div>
+          <p id="glyph-meaning">Origin · first spark · initiation</p>
+          <dl><div><dt>Sound</dt><dd id="glyph-sound">ah</dd></div><div><dt>Family</dt><dd id="glyph-family">Structure</dd></div><div><dt>Protocol use</dt><dd id="glyph-use">Begins declarations and genesis events.</dd></div></dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="console" class="shell block">
+      <div class="section-head reveal"><span>LIVE CONSOLE</span><h2>Translate intent into an agent-readable mandate.</h2><p>This prototype visualizes the future ATRALITH MCP workflow.</p></div>
+      <div class="console reveal">
+        <div class="console-top"><span></span><span></span><span></span><strong>atralith://mandate-builder</strong></div>
+        <div class="console-body">
+          <textarea id="intent-input" aria-label="Mandate intent">Audit this repository for exposed secrets. Read-only access. Budget 25 USDC.</textarea>
+          <button id="compile" class="button primary">Compile Atranic</button>
+          <pre id="console-output"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="economy" class="shell block">
+      <div class="section-head reveal"><span>AGENT ECONOMY</span><h2>Every skill must create, protect, or route measurable value.</h2></div>
+      <div class="economy-grid">
+        <article class="reveal"><strong>Earn</strong><p>Complete paid mandates and route specialist work.</p></article>
+        <article class="reveal"><strong>Protect</strong><p>Reduce security, governance, and execution risk.</p></article>
+        <article class="reveal"><strong>Prove</strong><p>Issue receipts that build portable reputation.</p></article>
+        <article class="reveal"><strong>Settle</strong><p>Bind payment to verified results and policy gates.</p></article>
+      </div>
+    </section>
+
+    <section class="shell install reveal">
+      <div><span>REFERENCE IMPLEMENTATION</span><h2>Built in public. Designed for agents.</h2><p>Protocol, schema, MCP server, validator, adapters, and examples will live here.</p></div>
+      <div class="install-command"><code>git clone https://github.com/wiredchaos/AGENTROPOLIS-ATG.git</code><button class="copy-button" data-copy="git clone https://github.com/wiredchaos/AGENTROPOLIS-ATG.git">COPY</button></div>
+    </section>
+  </main>
+
+  <footer class="shell"><span>AGENTROPOLIS-ATG · APACHE-2.0</span><span>ATRANIC/0.1 · WIRED CHAOS</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
