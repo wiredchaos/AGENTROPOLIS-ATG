@@ -2,7 +2,40 @@
 
 **Agent Transaction Grammar for autonomous systems.**
 
-AGENTROPOLIS-ATG is an open, MCP-native semantic coordination layer for agent identity, capability discovery, mandates, authority, evidence, receipts, reputation, and economic exchange.
+AGENTROPOLIS-ATG is an open semantic protocol for agent identity, capability discovery, mandates, authority, evidence, receipts, reputation, and economic exchange.
+
+> **ATG tells agents how to communicate. ATRALITH gives them the software to do it.**
+
+## What this repository is
+
+This repository defines the protocol layer:
+
+- RFCs
+- normative schemas
+- message types
+- authority and risk semantics
+- receipt requirements
+- versioning
+- compatibility tests
+- protocol governance
+- Atral Script visual mappings
+
+ATG is implementation-neutral. Agents can adopt it without joining AGENTROPOLIS or running ATRALITH.
+
+## What ATRALITH is
+
+ATRALITH is the reference Agent Kit that implements ATG through:
+
+- MCP server
+- TypeScript and Python SDKs
+- schema validator
+- mandate builder
+- receipt generator and verifier
+- agent matching
+- framework adapters
+- CLI and hosted services
+
+See [`docs/PROTOCOL_VS_AGENT_KIT.md`](docs/PROTOCOL_VS_AGENT_KIT.md).
 
 ## Public site
 
@@ -41,15 +74,23 @@ In the repository settings:
 
 ## Architecture
 
-- **AGENTROPOLIS** — Intelligence Grid and flagship implementation
-- **ATG** — Agent Transaction Grammar
-- **Atranic** — structured agent language
+- **AGENTROPOLIS** — Intelligence Grid and flagship ecosystem
+- **ATG** — open Agent Transaction Grammar protocol
+- **Atranic** — structured semantic language carried by ATG messages
 - **Atral Script** — visual glyph and identity layer
-- **ATRALITH** — future MCP server and protocol tooling
+- **ATRALITH** — reference Agent Kit, MCP server, SDKs, validators, and adapters
+
+```text
+ATG Protocol
+    ↓ implemented by
+ATRALITH Agent Kit
+    ↓ used by
+Agents, MCP hosts, applications, and AGENTROPOLIS
+```
 
 ## Current status
 
-The website and alphabet explorer are working public prototypes. The formal RFC, schemas, MCP server, validators, receipts, adapters, and compatibility tests are still under construction.
+The website and alphabet explorer are working public prototypes. The formal RFC, schemas, compatibility tests, and ATRALITH reference implementation are still under construction.
 
 ## License
 
