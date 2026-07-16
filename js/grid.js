@@ -1,7 +1,7 @@
 /* =========================================================
    AGENTROPOLIS INTELLIGENCE GRID — WebGPU city (WebGL2 fallback)
    ========================================================= */
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.webgpu.min.js';
+import * as THREE from '../vendor/three.webgpu.min.js';
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const canvas  = document.getElementById('stage');
