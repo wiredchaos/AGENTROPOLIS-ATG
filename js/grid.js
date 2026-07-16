@@ -151,9 +151,15 @@ GLYPHS.forEach((g,i)=>{ const b = document.createElement('button'); b.type='butt
 
 const phases = [...document.querySelectorAll('#phase span')];
 const out = document.getElementById('con-out');
+const BUDGET_RE = /(?:budget|cap|maximum)\s*:?\s*(\d+(?:\.\d+)?)\s*(USDC|USD|ETH|BTC|SOL|DOGE)\b/i;
+export function parseBudget(intent){
+  const match = String(intent || '').match(BUDGET_RE);
+  if(!match) return { amount:25, currency:'USDC', detected:false };
+  return { amount:Number(match[1]), currency:match[2].toUpperCase(), detected:true };
+}
 document.getElementById('compile').addEventListener('click',()=>{
   const intent = document.getElementById('con-in').value.trim() || 'unspecified intent';
-  const budget = (intent.match(/(\d+(?:\.\d+)?)\s*(usdc|usd)/i)||[])[1] || '25';
+  const budget = parseBudget(intent);
   const readOnly = /read[- ]?only/i.test(intent);
   const id = 'MND_' + Date.now().toString(36).toUpperCase();
   phases.forEach(p=>p.classList.remove('lit'));
@@ -162,7 +168,7 @@ document.getElementById('compile').addEventListener('click',()=>{
   <span class="k">"id"</span>:         <span class="v">"${id}"</span>,
   <span class="k">"intent"</span>:     <span class="v">"${intent.replace(/"/g,'\\"')}"</span>,
   <span class="k">"authority"</span>:  { <span class="k">"mode"</span>: <span class="v">"${readOnly?'read_only':'supervised'}"</span>, <span class="k">"revocable"</span>: <span class="v">true</span> },
-  <span class="k">"budget"</span>:     { <span class="k">"cap"</span>: <span class="v">${budget}</span>, <span class="k">"unit"</span>: <span class="v">"USDC"</span> },
+  <span class="k">"budget"</span>:     { <span class="k">"cap"</span>: <span class="v">${budget.amount}</span>, <span class="k">"unit"</span>: <span class="v">"${budget.currency}"</span> },
   <span class="k">"evidence"</span>:   [<span class="v">"artifact_hash"</span>, <span class="v">"status_log"</span>],
   <span class="k">"settlement"</span>: <span class="v">"receipt_gated"</span>
 }
