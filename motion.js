@@ -10,3 +10,7 @@ if(!reduceMotion){
   addEventListener('pointermove',event=>{const x=(event.clientX/innerWidth-.5)*10;const y=(event.clientY/innerHeight-.5)*8;document.querySelector('.holo-stone')?.style.setProperty('transform',`translate3d(${x}px,${y}px,0)`)});
 }
 addEventListener('scroll',()=>document.querySelector('.site-header')?.classList.toggle('scrolled',scrollY>24),{passive:true});
+// CSS-only hero parallax. No media assets are requested.
+if(!reduceMotion){
+  addEventListener('scroll',()=>{const hero=document.querySelector('[data-parallax]');if(!hero)return;const offset=Math.min(180,scrollY*.14);hero.style.setProperty('--parallax',`${offset}px`);document.querySelector('.hero-atmosphere')?.style.setProperty('transform',`translateX(-50%) translateY(${offset}px) scale(1.03)`);},{passive:true});
+}

@@ -30,10 +30,27 @@ const active={symbol:document.querySelector('#active-glyph'),letter:document.que
 function selectGlyph(g,index){document.querySelectorAll('.glyph-button').forEach((b,i)=>b.classList.toggle('active',i===index));active.symbol.textContent=g.s;active.letter.textContent=g.l;active.name.textContent=g.n;active.meaning.textContent=g.meaning;active.sound.textContent=g.sound;active.family.textContent=g.family;active.use.textContent=g.use;}
 glyphs.forEach((g,i)=>{const button=document.createElement('button');button.className='glyph-button'+(i===0?' active':'');button.innerHTML=`<span class="glyph-symbol">${g.s}</span><span class="glyph-code">${g.l} · ${g.n}</span>`;button.addEventListener('click',()=>selectGlyph(g,i));grid.appendChild(button)});
 
+const reduceMotionLocal=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const output=document.querySelector('#console-output');
 const compile=document.querySelector('#compile');
-function renderMandate(){const intent=document.querySelector('#intent-input').value.trim();const highRisk=/secret|wallet|payment|delete|deploy|credential|private/i.test(intent);const budget=(intent.match(/(\d+(?:\.\d+)?)\s*(USDC|USD|ETH|BTC|DOGE)/i)||[]);const data={protocol:'atranic/0.1',message_type:'mandate',glyph_header:'NAR · KOR · LUN · VAEL · RECP',intent,authority:{mode:/read.only|read only|audit/i.test(intent)?'observe':'draft',allowed_actions:/audit|repository/i.test(intent)?['read_repository','run_static_analysis']:['analyze','draft'],forbidden_actions:['exceed_authority','hide_side_effects','settle_without_receipt']},economics:budget[1]?{currency:(budget[2]||'').toUpperCase(),maximum_amount:Number(budget[1])}:undefined,evidence:{required:true,types:['artifact','receipt']},risk:{level:highRisk?'high':'moderate',human_review_required:highRisk}};output.textContent=JSON.stringify(data,null,2)}
-compile.addEventListener('click',renderMandate);renderMandate();
+const consoleSteps=['compiling mandate envelope','negotiating capabilities','routing to policy-gated workers','generating simulated receipt'];
+let terminalTimer;
+function writeTerminal(text){
+  clearInterval(terminalTimer);
+  if(reduceMotionLocal){output.textContent=text;return;}
+  output.textContent='';
+  let index=0;
+  terminalTimer=setInterval(()=>{output.textContent=text.slice(0,++index);if(index>=text.length)clearInterval(terminalTimer)},7);
+}
+function renderMandate(){
+  const intent=document.querySelector('#intent-input').value.trim();
+  const highRisk=/secret|wallet|payment|delete|deploy|credential|private/i.test(intent);
+  const budget=(intent.match(/(\d+(?:\.\d+)?)\s*(USDC|USD|ETH|BTC|DOGE)/i)||[]);
+  const payload={protocol:'atranic/0.1',message_type:'mandate',phase:'live_mandate_compilation',glyph_header:'NAR · KOR · LUN · VAEL · RECP',trace:consoleSteps.map((step,index)=>({step:index+1,status:'simulated_ok',event:step})),intent,authority:{mode:/read.only|read only|audit/i.test(intent)?'observe':'draft',allowed_actions:/audit|repository/i.test(intent)?['read_repository','run_static_analysis','emit_findings']:['analyze','draft','request_capability'],forbidden_actions:['exceed_authority','hide_side_effects','settle_without_receipt']},economics:budget[1]?{currency:(budget[2]||'').toUpperCase(),maximum_amount:Number(budget[1])}:null,evidence:{required:true,types:['artifact','receipt','routing_log']},risk:{level:highRisk?'high':'moderate',human_review_required:highRisk},routing:{visualization:'simulated_policy_route',hops:['mandate_builder','capability_registry','policy_gate','receipt_engine']},receipt_preview:{id:'recp_sim_'+Math.random().toString(16).slice(2,10),settlement:'pending_simulated_verification',signature:'pending_simulated_signature'}};
+  writeTerminal(JSON.stringify(payload,null,2));
+}
+compile.addEventListener('click',renderMandate);
+renderMandate();
 
 document.querySelectorAll('.copy-button').forEach(button=>button.addEventListener('click',async()=>{const text=button.dataset.copy;try{await navigator.clipboard.writeText(text);const before=button.textContent;button.textContent='COPIED';setTimeout(()=>button.textContent=before,1400)}catch{button.textContent='COPY FAILED'}}));
 
@@ -41,4 +58,4 @@ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entr
 
 const countObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;const end=Number(el.dataset.count);let value=0;const step=Math.max(1,Math.ceil(end/28));const timer=setInterval(()=>{value=Math.min(end,value+step);el.textContent=value;if(value===end)clearInterval(timer)},35);countObserver.unobserve(el)}),{threshold:.5});document.querySelectorAll('[data-count]').forEach(el=>countObserver.observe(el));
 
-const canvas=document.querySelector('#signal-field'),ctx=canvas.getContext('2d');let points=[];function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);points=Array.from({length:Math.min(90,Math.floor(innerWidth/15))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18}))}function animate(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of points){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>innerWidth)p.vx*=-1;if(p.y<0||p.y>innerHeight)p.vy*=-1;ctx.fillStyle='rgba(96,239,255,.34)';ctx.fillRect(p.x,p.y,1,1)}for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++){const a=points[i],b=points[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<125){ctx.strokeStyle=`rgba(96,239,255,${(1-d/125)*.07})`;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}requestAnimationFrame(animate)}addEventListener('resize',resize);resize();animate();
+const canvas=document.querySelector('#signal-field'),ctx=canvas.getContext('2d');let points=[];function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);points=Array.from({length:Math.min(90,Math.floor(innerWidth/15))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18}))}function drawSignalField(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of points){ctx.fillStyle='rgba(96,239,255,.34)';ctx.fillRect(p.x,p.y,1,1)}for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++){const a=points[i],b=points[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<125){ctx.strokeStyle=`rgba(96,239,255,${(1-d/125)*.07})`;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}}function animate(){for(const p of points){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>innerWidth)p.vx*=-1;if(p.y<0||p.y>innerHeight)p.vy*=-1}drawSignalField();requestAnimationFrame(animate)}addEventListener('resize',()=>{resize();drawSignalField()});resize();if(reduceMotionLocal){drawSignalField()}else{animate()}
