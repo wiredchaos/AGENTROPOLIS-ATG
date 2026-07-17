@@ -52,6 +52,21 @@ This repository is a **public prototype**.
 - Do **not** assume live autonomous execution, cryptographic signing, settlement, custody, or production MCP routing already exist
 - The formal ATG RFC, ATRALITH reference implementation, signed receipts, and live settlement are **not complete**
 
+## Security doctrine — Trusted Authorization Path
+
+ATG separates four properties that are often incorrectly collapsed into the word “security”:
+
+1. **Key custody** — where authority-bearing secrets reside.
+2. **Intent integrity** — whether the reviewed action matches the executable payload.
+3. **Authority scope** — whether the action is permitted by the active mandate and policy.
+4. **Accountability** — whether the full authorization chain can be independently verified afterward.
+
+The host may propose an action. It may not silently redefine the authority that approves it.
+
+For consequential actions, Agentropolis should minimize the trusted computing base, prevent silent downgrade, declare blind-signing states, bind reviewed intent to the exact payload, and produce receipts covering the mandate, policy decision, rendering path, authorization method, execution, and result.
+
+See [`docs/RFC-0001-TRUSTED-AUTHORIZATION-PATH.md`](docs/RFC-0001-TRUSTED-AUTHORIZATION-PATH.md).
+
 ## File structure
 
 ```text
@@ -98,7 +113,7 @@ Replace the corresponding `.asset-slot` fallback panels in `index.html` with `<i
 
 Protocol layer materials:
 
-- RFCs (planned)
+- RFCs
 - normative schemas (planned)
 - message types
 - authority and risk semantics
