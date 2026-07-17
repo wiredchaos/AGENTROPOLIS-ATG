@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.dev/schemas/nft-gateway/resolve-request.schema.json",
+  "title": "NFT Gateway Resolve Request",
+  "description": "Public, read-only NFT discovery input. This contract never accepts seed phrases, private keys, wallet approvals, delegate authority, or transaction signing permissions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id", "input"],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "input": {
