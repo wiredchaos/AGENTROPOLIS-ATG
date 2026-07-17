@@ -85,7 +85,7 @@ Three.js **0.185.1** is vendored locally. `three.webgpu.min.js` imports `./three
 ## Run locally
 
 ```bash
-python -m http.server 8080
+python3 -m http.server 8080
 ```
 
 Open:
